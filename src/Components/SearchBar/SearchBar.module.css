@@ -31,3 +31,14 @@ input {
 input:focus {
     outline: none;
 }
+
+button {
+    margin: 20px;
+    background-color: #ff00c5;
+    border: none;
+    height: 30px;
+    width: 100px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'ADLaM Display', cursive;
+}

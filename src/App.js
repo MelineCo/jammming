@@ -2,16 +2,17 @@ import React, {useState} from 'react';
 import TrackList from './Components/Tracklist/Tracklist';
 import Style from './App.module.css';
 import SearchBar from './Components/SearchBar/SearchBar';
-import SearchResult from './Components/SearchResult/SearchResult';
+import SearchResults from './Components/SearchResults/SearchResults';
 
 function App() {
 const [tracks, setTracks] = useState(SAMPLE_TRACKS);
+const [results, setResults] = useState([]);
 
   return (
     <div className="App">
       <h1>Jammming</h1>
-      <SearchBar />
-      <SearchResult />
+      <SearchBar setResults={setResults} />
+      <SearchResults results={results} />
       <TrackList tracks={tracks}/>
     </div>
   );
