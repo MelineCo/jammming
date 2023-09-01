@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import TrackList from './Components/Tracklist/Tracklist';
+import Style from './App.module.css';
 
 function App() {
 const [tracks, setTracks] = useState(SAMPLE_TRACKS);

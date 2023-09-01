@@ -1,0 +1,12 @@
+body{
+    background-image: url('./Images/marcela-laskoski-YrtFlrLo2DQ-unsplash.jpg');
+    background-size: cover;
+    color: #ff00c5;
+}
+
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'ADLaM Display', cursive;
+    font-size: 60px;
+}
