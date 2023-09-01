@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import TrackList from './Components/Tracklist/Tracklist';
 import Style from './App.module.css';
+import SearchBar from './Components/SearchBar/SearchBar';
+import SearchResult from './Components/SearchResult/SearchResult';
 
 function App() {
 const [tracks, setTracks] = useState(SAMPLE_TRACKS);
@@ -8,6 +10,8 @@ const [tracks, setTracks] = useState(SAMPLE_TRACKS);
   return (
     <div className="App">
       <h1>Jammming</h1>
+      <SearchBar />
+      <SearchResult />
       <TrackList tracks={tracks}/>
     </div>
   );
