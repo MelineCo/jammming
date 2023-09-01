@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import TrackList from './Components/Tracklist';
+import TrackList from './Components/Tracklist/Tracklist';
 
 function App() {
 const [tracks, setTracks] = useState(SAMPLE_TRACKS);
@@ -17,20 +17,20 @@ const SAMPLE_TRACKS = [
     id: 1,
     title: "Hakounamatata",
     artist: "Rafiki",
-    album: "Le roi linon"
+    album: "Le roi linon",
   },
   {
     id: 2,
     title: "Au delà des mers",
     artist: "Étoile de mer",
-    album: "La petite sirène"
+    album: "La petite sirène",
   },
   {
     id: 3,
     title: "L'air du vent",
     artist: "Pocahantas",
-    album: "Pocahantas"
+    album: "Pocahantas",
   }
-]
+];
 
 export default App;

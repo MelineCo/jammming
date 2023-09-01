@@ -1,8 +1,11 @@
 import React from 'react';
 
-function Track(){
-    const title;
-    const
+export default function Track( {track}){
+    return (
+        <div>
+            {track.title}
+        </div>
+    );
 };
 
-export default Track;
+
