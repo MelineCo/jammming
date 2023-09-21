@@ -3,6 +3,7 @@ import TrackList from './Components/Tracklist/Tracklist';
 import SearchBar from './Components/SearchBar/SearchBar';
 import SearchResults from './Components/SearchResults/SearchResults';
 import styles from './App.module.css';
+import Playlist from './Components/Playlist/Playlist';
 
 function App() {
 const [tracks, setTracks] = useState(SAMPLE_TRACKS);
@@ -12,7 +13,10 @@ const [searchResults, setSearchResults] = useState([]);
     <div className={styles.body}>
       <h1 className={styles.h1}>Jammming</h1>
       <SearchBar setSearchResults={setSearchResults} tracks={tracks} />
-      <SearchResults searchResults={searchResults} />
+      <div className={styles.flex}>
+        <SearchResults searchResults={searchResults} />
+        <Playlist />
+      </div>
     </div>
   );
 }

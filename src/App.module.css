@@ -10,3 +10,8 @@ h1 {
     font-family: 'ADLaM Display', cursive;
     font-size: 60px;
 }
+
+.flex{
+    display: flex;
+    justify-content: center;
+}
