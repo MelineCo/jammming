@@ -2,30 +2,19 @@ import React, { useState } from 'react';
 import styles from './SearchBar.module.css';
 import { FaSearch } from 'react-icons/fa';
 
-function SearchBar( {setResults}) {
+function SearchBar( {setSearchResults, tracks}) {
   const [song, setSong] = useState('');
 
-const fetchData = (value) => {
-  fetch("https://jsonplaceholder.typicode.com/users").then((response) => response.json()).
-  then((json) => {
-    // On veut filtrer les données json et les enregistrer dans une variable 'results'
-    const results = json.filter((user) => {
-      return
-        value && 
-        user && 
-        user.name && 
-        user.name.toLowerCase().includes(value);
-    })
-    setResults(results);
-  });
-}
+  const filterData = () => {
+    const filtered = tracks.filter(track => track.title.includes(song));
+    setSearchResults(filtered);
+    console.log(filtered);
+  };
 
-
-
-const handleChange = (value) => {
-  setSong(value);
-  fetchData(value);
-}
+  const handleChange = (value) => {
+    setSong(value);
+    filterData();
+  };
 
   return (
     <div className={styles.searchBarContainer}>
@@ -34,7 +23,7 @@ const handleChange = (value) => {
         <input placeholder='Type to search a song...' value={song} onChange={(e) => handleChange(e.target.value)} />
       </div>
 
-      <button>Search</button>
+      <button type="submit">Search</button>
 
     </div>
   )

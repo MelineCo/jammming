@@ -1,14 +1,10 @@
 import React from 'react';
-import styles from './SearchResults.module.css';
-import Result from '../Track/Result';
+import Tracklist from '../Tracklist/Tracklist';
 
-function SearchResults( {results} ) {
+function SearchResults( {searchResults} ) {
   return (
-    <div className={styles.resultsList}>
-      {results.map((result, id) => {
-          return <Result result={result} key={id} />;
-        })}
-        <p>A</p>
+    <div>
+      <Tracklist searchResults={searchResults} />
     </div>
   )
 }

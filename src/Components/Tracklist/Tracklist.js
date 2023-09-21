@@ -1,12 +1,12 @@
 import React from 'react';
 import Track from '../Track/Track';
 
-function Tracklist( { tracks }) {
+function Tracklist( {searchResults} ) {
   return (
     <div className="track-list">
-      {tracks.map(track => {
-        return <Track track={track} key={track.id} />;
-      } )}
+      {searchResults?.map((track, index) => {
+        return <Track key={index} title={track.title} artist={track.artist} album={track.album} />
+      })}
     </div>
   )
 }
