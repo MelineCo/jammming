@@ -1,3 +1,14 @@
+.track{
+    line-height: 3px;
+    border-bottom: 1px solid #ff00c5;
+    padding: 20px 10px 10px 10px;
+    color: white;
+}
 .title{
-    font-size: 30px;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.details{
+    font-size: 14px;
 }
