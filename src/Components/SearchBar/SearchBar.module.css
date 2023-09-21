@@ -24,7 +24,7 @@ input {
     border: none;
     height: 100%;
     font-size: 1.25rem;
-    width: 100%;
+    width: auto;
     margin-left: 5px;
 }
 

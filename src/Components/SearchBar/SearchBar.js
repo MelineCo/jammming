@@ -8,7 +8,6 @@ function SearchBar( {setSearchResults, tracks}) {
   const filterData = () => {
     const filtered = tracks.filter(track => track.title.includes(song));
     setSearchResults(filtered);
-    console.log(filtered);
   };
 
   const handleChange = (value) => {
@@ -20,7 +19,7 @@ function SearchBar( {setSearchResults, tracks}) {
     <div className={styles.searchBarContainer}>
       <div className={styles.inputWrapper}>
         <FaSearch id="search-icon" />
-        <input placeholder='Type to search a song...' value={song} onChange={(e) => handleChange(e.target.value)} />
+        <input className={styles.input} placeholder='Type to search a song...' value={song} onChange={(e) => handleChange(e.target.value)} />
       </div>
 
       <button type="submit">Search</button>
