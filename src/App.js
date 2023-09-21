@@ -15,7 +15,7 @@ const [searchResults, setSearchResults] = useState([]);
       <SearchBar setSearchResults={setSearchResults} tracks={tracks} />
       <div className={styles.flex}>
         <SearchResults searchResults={searchResults} />
-        <Playlist />
+        <Playlist searchResults={searchResults} />
       </div>
     </div>
   );
