@@ -1,5 +1,6 @@
 import { useState } from "react";
 import TracklistToSave from "../Tracklist/TracklistToSave";
+import Tracklist from "../Tracklist/Tracklist";
 import styles from "./Playlist.module.css";
 
 const Playlist = ({playlist}) => {
@@ -7,7 +8,7 @@ const Playlist = ({playlist}) => {
     const [playlistName, setPlaylistName] = useState('New playlist');
 
     /* Pour savoir si on affiche le bouton d'ajout*/
-    const button = false;
+    const isRemoval = true;
 
     const handleChange = (value) => {
         setPlaylistName(value);
@@ -16,7 +17,7 @@ const Playlist = ({playlist}) => {
     return (
         <div className={styles.list}>
             <input className={styles.input} placeholder='Name your playlist...' value={playlistName} onChange={(e) => handleChange(e.target.value)} />
-            <TracklistToSave playlist={playlist} button={button} />
+            <Tracklist tracks={playlist} isRemoval={isRemoval} />
             <button className={styles.button}>Add to spotify</button>
         </div>
     )
