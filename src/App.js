@@ -8,14 +8,35 @@ import Playlist from './Components/Playlist/Playlist';
 function App() {
 const [tracks, setTracks] = useState(SAMPLE_TRACKS);
 const [searchResults, setSearchResults] = useState([]);
+const [playlist, setPlaylist] = useState(TEST_PLAYLIST);
+
+const addSong = (id) => {
+  console.log(`addSong= ${id}`);
+  setPlaylist(searchResults.map(track => {
+    if (track.id === id) {
+      const selectedSong = {
+        title: track.title,
+        artist: track.artist,
+        album: track.album
+      }
+      console.log(`selected song : ${selectedSong}`)
+      return {
+        ...playlist,
+        selectedSong
+      };
+    }
+    playlist.map(song => console.log(`playlist : ${song}`))
+  }))
+  /*const track = searchResults.filter(track => track.id === id);*/
+}
 
   return (
     <div className={styles.body}>
       <h1 className={styles.h1}>Jammming</h1>
       <SearchBar setSearchResults={setSearchResults} tracks={tracks} />
       <div className={styles.flex}>
-        <SearchResults searchResults={searchResults} />
-        <Playlist searchResults={searchResults} />
+        <SearchResults searchResults={searchResults} addSong={addSong} />
+        <Playlist playlist={playlist} />
       </div>
     </div>
   );
@@ -52,6 +73,27 @@ const SAMPLE_TRACKS = [
     title: "Veni vedi dici",
     artist: "J Cesar",
     album: "ROme production",
+  }
+];
+
+const TEST_PLAYLIST = [
+  {
+    id: 1,
+    title: "Une souris verte",
+    artist: "Anastasia",
+    album: "Les comptines",
+  },
+  {
+    id: 2,
+    title: "Trois petits cochons",
+    artist: "Emma",
+    album: "Les comptines",
+  },
+  {
+    id: 3,
+    title: "Pierrot la lune",
+    artist: "Ugo",
+    album: "Les comptines",
   }
 ];
 

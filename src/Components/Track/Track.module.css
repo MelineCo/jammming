@@ -21,18 +21,6 @@
     font-size: 14px;
 }
 
-.button {
-    background-color: #ff00c5;
-    border: none;
-    height: auto;
-    width: auto;
-    border-radius: 10px;
-    font-size: 20px;
-    font-family: 'ADLaM Display', cursive;
-    padding-top: 0px;
-    padding-bottom: 5px;
-}
-
 p {
     margin-bottom: 0;
 }
