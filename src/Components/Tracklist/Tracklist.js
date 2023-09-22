@@ -2,11 +2,11 @@ import React from 'react';
 import Track from '../Track/Track';
 import styles from './Tracklist.module.css';
 
-function Tracklist( {tracks, addSong, isRemoval} ) {
+function Tracklist(props) {
   return (
     <div className={styles.list}>
-      {tracks?.map((track, index) => {
-        return <Track key={index} title={track.title} artist={track.artist} album={track.album} id={track.id}  addSong={addSong} isRemoval={isRemoval} />
+      {props.tracks?.map((track, index) => {
+        return <Track key={index} track={track}  addSong={props.addSong} isRemoval={props.isRemoval} removeSong={props.removeSong} />
       })}
     </div>
   )

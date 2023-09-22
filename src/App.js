@@ -8,26 +8,25 @@ import Playlist from './Components/Playlist/Playlist';
 function App() {
 const [tracks, setTracks] = useState(SAMPLE_TRACKS);
 const [searchResults, setSearchResults] = useState([]);
-const [playlist, setPlaylist] = useState(TEST_PLAYLIST);
+const [playlist, setPlaylist] = useState([]);
 
-const addSong = (id) => {
-  console.log(`addSong= ${id}`);
-  setPlaylist(searchResults.map(track => {
-    if (track.id === id) {
-      const selectedSong = {
-        title: track.title,
-        artist: track.artist,
-        album: track.album
-      }
-      console.log(`selected song : ${selectedSong}`)
-      return {
-        ...playlist,
-        selectedSong
-      };
-    }
-    playlist.map(song => console.log(`playlist : ${song}`))
-  }))
-  /*const track = searchResults.filter(track => track.id === id);*/
+const addSong = (track) => {
+  if(playlist.find(savedTrack => savedTrack.id === track.id) != undefined) {
+    return
+  } else {
+    setPlaylist(
+      [...playlist, track]
+    );
+  }
+}
+
+const removeSong = (track) => {
+  console.log("Début de suppression une musique");
+  return (
+    setPlaylist(
+      playlist.filter(savedTrack => savedTrack.id != track.id)
+    )
+  )
 }
 
   return (
@@ -36,13 +35,13 @@ const addSong = (id) => {
       <SearchBar setSearchResults={setSearchResults} tracks={tracks} />
       <div className={styles.flex}>
         <SearchResults searchResults={searchResults} addSong={addSong} />
-        <Playlist playlist={playlist} />
+        <Playlist playlist={playlist} removeSong={removeSong} />
       </div>
     </div>
   );
 }
 
-//const SAMPLE_TITLES = ["Il était un petit navier", "Une souris verte", "Dodo l'enfant do", "Les petits poissons"];
+
 const SAMPLE_TRACKS = [
   {
     id: 1,
@@ -73,28 +72,27 @@ const SAMPLE_TRACKS = [
     title: "Veni vedi dici",
     artist: "J Cesar",
     album: "ROme production",
-  }
-];
-
-const TEST_PLAYLIST = [
+  },
   {
-    id: 1,
+    id: 100,
     title: "Une souris verte",
     artist: "Anastasia",
     album: "Les comptines",
   },
   {
-    id: 2,
+    id: 200,
     title: "Trois petits cochons",
     artist: "Emma",
     album: "Les comptines",
   },
   {
-    id: 3,
+    id: 300,
     title: "Pierrot la lune",
     artist: "Ugo",
     album: "Les comptines",
   }
 ];
+
+
 
 export default App;
