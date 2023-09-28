@@ -12,8 +12,12 @@ function SearchBar( {setSearchResults, tracks}) {
 
   const handleChange = (value) => {
     setSong(value);
-    filterData();
+    
   };
+
+  const handleSubmit = () => {
+    filterData();
+  }
 
   return (
     <div className={styles.searchBarContainer}>
@@ -22,7 +26,7 @@ function SearchBar( {setSearchResults, tracks}) {
         <input className={styles.input} placeholder='Type to search a song...' value={song} onChange={(e) => handleChange(e.target.value)} />
       </div>
 
-      <button type="submit">Search</button>
+      <button type="submit" onClick={() => handleSubmit()}>Search</button>
 
     </div>
   )

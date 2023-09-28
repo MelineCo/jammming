@@ -9,7 +9,6 @@ export default function Track(props){
     const onRemove = () => {
         props.removeSong(props.track);
     }
-    
 
     const renderAction = () => {
         if(props.isRemoval){
