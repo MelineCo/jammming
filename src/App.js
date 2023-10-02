@@ -4,14 +4,13 @@ import SearchResults from './Components/SearchResults/SearchResults';
 import styles from './App.module.css';
 import Playlist from './Components/Playlist/Playlist';
 import Login from './Login';
+import FetchWebApi from './FetchWebApi';
 
 function App() {
 const [tracks, setTracks] = useState([]);
 const [searchResults, setSearchResults] = useState([]);
 const [playlist, setPlaylist] = useState([]);
-const [uri, setUri] = useState([]);
 const [accessToken, setAccessToken] = useState('');
-const [userID, setUserID] = useState('');
 
 const retrieveTracks = async (song) => {
   try{
@@ -36,9 +35,7 @@ const retrieveTracks = async (song) => {
       })));
       return searchResults;
     } else {
-      console.log("erreur")
       setAccessToken(undefined)
-      console.log(accessToken)
     }
   } catch(error){
     console.log(error)
@@ -63,52 +60,33 @@ const removeSong = (track) => {
   )
 }
 
-const saveToSpotify = async (playlist) => {
-  const uris = [];
-  playlist.map(track => {
-    return uris.push(track.uri);
-  });
-  setUri([uris]);
-  setPlaylist([]);
-  console.log("URI enregistrés");
+async function saveToSpotify(tracksUri){
 
-  try {
-    const response = await fetch("https://api.spotify.com/v1/me", {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${accessToken}`
-    }});
-    if(response.ok){
-      const { id: user_id } = await response.json();
-      console.log("User_ID récupéré")
-      setUserID(user_id) 
-      console.log(userID)
-    }
-  } catch(error){
-    console.log(error)
-  }
-  
+  // On récupère le User ID
+  const { id: user_id } = await FetchWebApi('v1/me', accessToken, 'GET')
 
-  // A FAIRE : VERIFIER QUE LA PLAYLIST N'EXISTE PAS SINON MESSAGE POUR DEMANDER à L'UTILISATEUR DE MODIFIER LE NOM
-  try{
-    const endpoint = `https://api.spotify.com/v1/users/${userID}/playlists`;
-    console.log(endpoint)
-    const urlToFetch = endpoint;
-    const response = await fetch(urlToFetch, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        'Content-Type': 'application/json'
-      },
-      method: "POST",
-      body: JSON.stringify({
-        "name": "New Playlist",
+  // On crée la playlist dans Spotify
+  const playlistSpotify = await FetchWebApi(
+    `v1/users/${user_id}/playlists`,
+    accessToken,
+    'POST',
+    {
+      "name": "Help Playlist",
         "description": "New playlist description",
-        "public": false
-      })
-    });
-  } catch(error){
-    console.log(error)
-  }
+      "public": false
+    })
+
+  // On ajoute les tracks à la playlist à partir de leur URI
+  await FetchWebApi(
+    `v1/playlists/${playlistSpotify.id}/tracks?uris=${tracksUri.join(',')}`,
+    accessToken,
+    'POST'
+  );
+
+  // On vide la playlist affichée
+  setPlaylist([]);
+
+  return playlistSpotify;
 }
 
   return (

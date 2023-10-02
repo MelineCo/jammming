@@ -13,8 +13,13 @@ const Playlist = ({playlist, removeSong, saveToSpotify}) => {
         setPlaylistName(value);
     }
 
-    const onSaveToSpotify = () => {
-        saveToSpotify(playlist);
+    const onSaveToSpotify = async () => {
+        let tracksUri = []
+        playlist?.map(track => {
+            return tracksUri.push(track.uri);
+          })
+        const createdPlaylist = await saveToSpotify(tracksUri);
+        console.log(createdPlaylist.name, createdPlaylist.id)
     }
 
     return (

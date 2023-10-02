@@ -3,7 +3,7 @@ import { useEffect } from "react";
 // client_id : Required. The client ID provided to you by Spotify when you register your application.
 const client_id = "3d32bb9eac0a4a30a1c6c69fa1827826";
 var redirect_uri = 'http://localhost:3000/';
-var scope = 'playlist-modify-public playlist-modify-private user-read-private user-read-email';
+var scope = 'playlist-modify-public playlist-modify-private playlist-read-collaborative playlist-read-private user-read-private user-read-email';
 
 // The following JavaScript sample builds the authorization request:
 var url = 'https://accounts.spotify.com/authorize';
@@ -29,8 +29,6 @@ const returnedParamsFromSpotifyAuth = (hash) => {
 }
 
 function Login({accessToken, setAccessToken}){
-
-    console.log(url)
 
     useEffect(()=> {
         if(window.location.hash){
