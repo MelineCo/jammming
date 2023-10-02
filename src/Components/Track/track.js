@@ -25,7 +25,7 @@ export default function Track(props){
     return (
         <div className={styles.track}>
             <div className={styles.song}>
-                <span className={styles.title}>{props.track.title}</span>
+                <span className={styles.title}>{props.track.name}</span>
                 <p className={styles.details}>{props.track.artist} | {props.track.album}</p>
             </div>
             {renderAction()}

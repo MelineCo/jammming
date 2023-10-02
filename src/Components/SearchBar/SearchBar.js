@@ -2,21 +2,15 @@ import React, { useState } from 'react';
 import styles from './SearchBar.module.css';
 import { FaSearch } from 'react-icons/fa';
 
-function SearchBar( {setSearchResults, tracks}) {
+function SearchBar( {setSearchResults, tracks, retrieveTracks}) {
   const [song, setSong] = useState('');
-
-  const filterData = () => {
-    const filtered = tracks.filter(track => track.title.includes(song));
-    setSearchResults(filtered);
-  };
 
   const handleChange = (value) => {
     setSong(value);
-    
   };
 
   const handleSubmit = () => {
-    filterData();
+    retrieveTracks(song);
   }
 
   return (
